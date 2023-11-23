@@ -5,10 +5,7 @@ import ProductPage from "./pages/Products";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/Error";
 import ProductDetails from "./pages/ProductDetails";
-import Customer from "./pages/admin/Customer";
-import ProductCatalogue from "./pages/admin/ProductCatalogue";
-import ProductOrders from "./pages/admin/ProductOrders";
-import CustomerOrders from "./pages/admin/CustomerOrders";
+
 
 const router = createBrowserRouter([
   {
@@ -27,25 +24,6 @@ const router = createBrowserRouter([
       }
     ],
 
-  },
-  {
-    path: "/admin",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {/** admin page to view orders made by customers */
-        path: "/admin/custOrders", element: <CustomerOrders />
-      },
-      {/** admin page to order products from suppliers */
-        path: "/admin/productorders", element: <ProductOrders />
-      },
-      {/** admin page to view and delete customer accounts */
-        path: "/admin/editCust", element: <Customer />
-      },
-      {/** admin page to update product catalogue */
-        path: "/admin/catalogue", element: <ProductCatalogue />
-      }
-    ]
   }
 ]);
 

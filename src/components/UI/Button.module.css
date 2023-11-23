@@ -1,0 +1,27 @@
+.btn {
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+    padding: 10px 30px;
+    border: solid 2px #73c6b7;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 19px;
+    transition: 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin: 2% auto;
+}
+
+.btn:hover {
+    transition: 1000ms;
+    padding: 10px 50px;
+    transform: translateY(-0px);
+    background-color: #73c6b7;
+    color: #000000;
+    border: solid 2px #73c6b7;
+}

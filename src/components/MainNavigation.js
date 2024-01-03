@@ -9,12 +9,12 @@ const MainNavigation = () => {
       <nav className={classes.nav}>
         <ul>
           <li>
-            <NavLink to='/' activeClassName={classes.active}>
+            <NavLink to='/' className={({ isActive }) => isActive ? classes.active : undefined} end>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to='/products' activeClassName={classes.active}>
+            <NavLink to='/products' className={({ isActive }) => isActive ? classes.active : undefined}>
               Products
             </NavLink>
           </li>

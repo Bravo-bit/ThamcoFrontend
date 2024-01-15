@@ -1,11 +1,18 @@
-import { useLoaderData } from "react-router-dom";
-import ProductList from "./ProductList";
+import { Suspense } from 'react';
+import { Await, json, useLoaderData } from 'react-router-dom';
+import ProductList from "../components/Product/ProductList";
 
 function ProductPage() {
 
   const products = useLoaderData();
 
-  return <ProductList products={products}></ProductList>
+  return (
+    <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+      <Await resolve={products}>
+        {(loadedProducts) => <ProductList products={loadedProducts} />}
+      </Await>
+    </Suspense>
+  );
 
 }
 
@@ -13,13 +20,18 @@ export default ProductPage;
 
 export async function loader() {
 
-  const response = await fetch("https://undercutters.azurewebsites.net/Help/Api/GET-api-Product_category_id_category_name_brand_id_min_price_max_price");
+  const response = await fetch("http://localhost:8080/products", {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
   if (!response.ok) {
-
+    throw json({ message: "Something went wrong" }, { status: 500 });
   } else {
     const responseData = await response.json();
-    return responseData.products;
+    return responseData
   }
 
 }

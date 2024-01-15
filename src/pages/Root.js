@@ -1,14 +1,32 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import Header from "../components/Layout/Header"
+import Cart from "../components/Cart/Cart"
 import MainNavigation from "../components/MainNavigation";
-
+import CartProvider from "../components/store/CartProvider"
 function RootLayout() {
+
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
   return (
-    <>
-      <MainNavigation></MainNavigation>
-      <main>
-        <Outlet></Outlet>
-      </main>
-    </>
+    <CartProvider>
+      <>
+        {cartIsShown && <Cart onClose={hideCartHandler} />}
+        <Header onShowCart={showCartHandler} />
+        <MainNavigation></MainNavigation>
+        <main>
+          <Outlet></Outlet>
+        </main>
+      </>
+    </CartProvider>
   );
 }
 

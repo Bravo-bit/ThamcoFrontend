@@ -1,0 +1,61 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.product:hover {
+    /* background-color: #008080; */
+    background-color: #d5c6c06b
+}
+
+.product h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.description {
+    margin: 0.25rem 0;
+    color: white;
+}
+
+.productName {
+    font-weight: bold;
+    color: white;
+}
+
+.productEan {
+    font-style: italic;
+    color: white;
+}
+
+.categoryId {
+    color: #008080;
+}
+
+.brandId {
+    color: #008080;
+}
+
+.productDescription {
+    font-style: italic;
+}
+
+.price {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #ad5502;
+    font-size: 1.5rem;
+}
+
+.productInStock {
+    color: #008000;
+}
+
+.productExpectedRestock {
+    color: #ff4500;
+}

@@ -1,11 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import AuthProvider from "./components/auth/AuthProvider";
+import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
-import { RouterProvider } from "react-router-dom";
 import ProductPage, { loader as productLoader } from "./pages/Products";
 import RootLayout from "./pages/Root";
-import ErrorPage from "./pages/Error";
-import ProductDetails from "./pages/ProductDetails";
-
 
 const router = createBrowserRouter([
   {
@@ -19,16 +17,17 @@ const router = createBrowserRouter([
       {/** product catalogue for clients to view and make orders */
         path: "products", element: <ProductPage />, loader: productLoader
       },
-      {/** product's information  */
-        path: "products/:productId", element: <ProductDetails />
-      }
     ],
 
   }
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../components/Layout/Header"
-import Cart from "../components/Cart/Cart"
+import Cart from "../components/Cart/Cart";
+import Header from "../components/Layout/Header";
 import MainNavigation from "../components/MainNavigation";
-import CartProvider from "../components/store/CartProvider"
+import CartProvider from "../components/store/CartProvider";
+
+
 function RootLayout() {
 
   const [cartIsShown, setCartIsShown] = useState(false);

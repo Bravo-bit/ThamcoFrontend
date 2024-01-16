@@ -1,16 +1,20 @@
-.header {
-    color: #008080;
+/* Container for the bubble box */
+.about-us-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
 }
 
-.input {
-    width: 60%;
-    height: 20px;
-    background: #000;
-    justify-content: center;
-    display: flex;
-    margin: 20px auto;
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
+.about-us-container:before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -15px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: #008080 transparent transparent transparent;
 }

@@ -9,10 +9,10 @@ function ProductItem(props) {
 
     const addToCartHandler = (amount) => {
         cartCtx.addItem({
-            id: props.productId,
+            productId: props.productId,
             productEan: props.productEan,
-            categoryId: props.categoryId,
-            brandId: props.brandId,
+            categoryName: props.categoryName,
+            brandName: props.brandName,
             productName: props.productName,
             productDescription: props.productDescription,
             productInStock: props.productInStock,
@@ -28,8 +28,8 @@ function ProductItem(props) {
                 <h3>{props.productName}</h3>
                 <div className={`${styles.productEan} ${styles.description}`}>ID : {props.productId}</div>
                 <div className={`${styles.productEan} ${styles.description}`}>EAN : {props.productEan}</div>
-                <div className={`${styles.categoryId} ${styles.description}`}>Category ID : {props.categoryId}</div>
-                <div className={`${styles.brandId} ${styles.description}`}>Brand ID : {props.brandId}</div>
+                <div className={`${styles.categoryId} ${styles.description}`}>Category Name : {props.categoryName}</div>
+                <div className={`${styles.brandId} ${styles.description}`}>Brand Name : {props.brandName}</div>
                 <div className={`${styles.productDescription} ${styles.description}`}>Description : {props.productDescription}</div>
                 <div className={styles.price}>Price : {price}</div>
                 <div className={`${styles.productInStock} ${styles.description}`}>Stock : {props.productInStock}</div>

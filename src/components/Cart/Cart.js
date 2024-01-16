@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-
+import { useAuth0 } from "@auth0/auth0-react";
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
 import classes from './Cart.module.css';
@@ -11,12 +11,13 @@ const Cart = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const cartCtx = useContext(CartContext);
+  const { isAuthenticated, } = useAuth0();
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
-  const cartItemRemoveHandler = (id) => {
-    cartCtx.removeItem(id);
+  const cartItemRemoveHandler = (productId) => {
+    cartCtx.removeItem(productId);
   };
 
   const cartItemAddHandler = (item) => {
@@ -29,7 +30,7 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch('https://react-http-6b4a6.firebaseio.com/orders.json', {
+    await fetch('https://thamcoorders-default-rtdb.firebaseio.com/orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
@@ -41,15 +42,16 @@ const Cart = (props) => {
     cartCtx.clearCart();
   };
 
+
   const cartItems = (
     <ul className={classes['cart-items']}>
       {cartCtx.items.map((item) => (
         <CartItem
-          key={item.id}
+          key={item.productId}
           productName={item.productName}
           price={item.price}
           amount={item.amount}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onRemove={cartItemRemoveHandler.bind(null, item.productId)}
           onAdd={cartItemAddHandler.bind(null, item)}
         />
       ))}
@@ -76,8 +78,10 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && (
+      {isCheckout && isAuthenticated ? (
         <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+      ) : (
+        <div><p>Please log in to checkout</p></div>
       )}
       {!isCheckout && modalActions}
     </React.Fragment>

@@ -13,12 +13,14 @@ const cartReducer = (state, action) => {
       state.totalAmount + action.item.price * action.item.amount;
 
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id
+      (item) => item.productId === action.item.productId
     );
     const existingCartItem = state.items[existingCartItemIndex];
+
     let updatedItems;
 
     if (existingCartItem) {
+      // If the item already exists in the cart, update the quantity
       const updatedItem = {
         ...existingCartItem,
         amount: existingCartItem.amount + action.item.amount,
@@ -26,7 +28,8 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     } else {
-      updatedItems = state.items.concat(action.item);
+      // If the item is not in the cart, add a new item
+      updatedItems = [...state.items, action.item];
     }
 
     return {
@@ -36,13 +39,13 @@ const cartReducer = (state, action) => {
   }
   if (action.type === 'REMOVE') {
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.id
+      (item) => item.productId === action.productId
     );
     const existingItem = state.items[existingCartItemIndex];
     const updatedTotalAmount = state.totalAmount - existingItem.price;
     let updatedItems;
     if (existingItem.amount === 1) {
-      updatedItems = state.items.filter(item => item.id !== action.id);
+      updatedItems = state.items.filter(item => item.productId !== action.productId);
     } else {
       const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
       updatedItems = [...state.items];
@@ -72,12 +75,12 @@ const CartProvider = (props) => {
     dispatchCartAction({ type: 'ADD', item: item });
   };
 
-  const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: 'REMOVE', id: id });
+  const removeItemFromCartHandler = (productId) => {
+    dispatchCartAction({ type: 'REMOVE', productId: productId });
   };
 
   const clearCartHandler = () => {
-    dispatchCartAction({type: 'CLEAR'});
+    dispatchCartAction({ type: 'CLEAR' });
   };
 
   const cartContext = {

@@ -4,7 +4,7 @@ import "./Profile.css";
 
 const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const [defaulBalance, setDafeultBalance] = useState(100);
+    const defaultBalance = 100;
 
     if (isLoading) {
         return <div>Please Log In to view your profile and complete your order</div>;
@@ -17,7 +17,7 @@ const Profile = () => {
                 <div className="profile-info">
                     <h2>{user.name}</h2>
                     <p>{user.email}</p>
-                    <p>Total Balance: ${defaulBalance}</p>
+                    <p>Total Balance: ${defaultBalance}</p>
                 </div>
             </div>
         )

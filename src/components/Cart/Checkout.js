@@ -56,18 +56,14 @@ const Checkout = (props) => {
     });
   };
 
-  const nameControlClasses = `${classes.control} ${
-    formInputsValidity.name ? '' : classes.invalid
-  }`;
-  const streetControlClasses = `${classes.control} ${
-    formInputsValidity.street ? '' : classes.invalid
-  }`;
-  const postalCodeControlClasses = `${classes.control} ${
-    formInputsValidity.postalCode ? '' : classes.invalid
-  }`;
-  const cityControlClasses = `${classes.control} ${
-    formInputsValidity.city ? '' : classes.invalid
-  }`;
+  const nameControlClasses = `${classes.control} ${formInputsValidity.name ? '' : classes.invalid
+    }`;
+  const streetControlClasses = `${classes.control} ${formInputsValidity.street ? '' : classes.invalid
+    }`;
+  const postalCodeControlClasses = `${classes.control} ${formInputsValidity.postalCode ? '' : classes.invalid
+    }`;
+  const cityControlClasses = `${classes.control} ${formInputsValidity.city ? '' : classes.invalid
+    }`;
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
@@ -85,7 +81,7 @@ const Checkout = (props) => {
         <label htmlFor='postal'>Postal Code</label>
         <input type='text' id='postal' ref={postalCodeInputRef} />
         {!formInputsValidity.postalCode && (
-          <p>Please enter a valid postal code (5 characters long)!</p>
+          <p>Please enter a valid postal code (7 characters long)!</p>
         )}
       </div>
       <div className={cityControlClasses}>
